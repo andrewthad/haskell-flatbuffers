@@ -284,7 +284,7 @@ mkFromEnum enumName enum enumValsAndNames = do
   where
     mkMatch (enumVal, enumName) =
       Match
-        (ConP enumName [])
+        (ConP enumName [] [])
         (NormalB (intLitE (enumValInt enumVal)))
         []
 
@@ -306,7 +306,7 @@ mkEnumNameFun enumName enum enumValsAndNames = do
   where
     mkMatch (enumVal, enumName) =
       Match
-        (ConP enumName [])
+        (ConP enumName [] [])
         (NormalB (textLitE (unIdent (getIdent enumVal))))
         []
 

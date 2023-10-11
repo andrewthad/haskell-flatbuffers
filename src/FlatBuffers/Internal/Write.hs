@@ -797,10 +797,4 @@ uoffsetFrom pos = writeUOffset . align
 
 {-# INLINE utf8length #-}
 utf8length :: Text -> Int32
-utf8length (TI.Text arr off len)
-  | len == 0  = 0
-  | otherwise = unsafeDupablePerformIO $
-    c_length_utf8 (A.aBA arr) (fromIntegral off) (fromIntegral len)
-
-foreign import ccall unsafe "_hs_text_length_utf8" c_length_utf8
-  :: ByteArray# -> CSize -> CSize -> IO Int32
+utf8length (TI.Text _ _ len) = fromIntegral len
